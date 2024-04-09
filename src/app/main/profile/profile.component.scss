@@ -1,0 +1,31 @@
+img.uploadfile {
+    min-height: 120px;
+    height: 120px;
+    cursor: pointer;
+}
+
+.upload-container {
+    position: relative;
+    display: inline-block;
+
+    .ti-camera {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 40px;
+        color: #ffffffc9;
+        background: #0000004a;
+        opacity: 0; /* Initially hidden */
+        transition: opacity 0.3s ease;
+        height: 120px;
+        cursor: pointer;
+        align-content: center;
+        align-self: center;    
+
+        &:hover {
+            color: #ffffffc9;
+            opacity: 1;
+        }
+    }
+}

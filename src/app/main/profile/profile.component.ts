@@ -63,6 +63,41 @@ export default class ProfileComponent implements OnInit, OnDestroy {
       }
     )
   }
+ 
+  handleFileInput(event: any) {
+    const file = event.target.files[0];
+    // You can now use 'fileToUpload' for further operations like uploading to a server
+    const type = file.type;
+
+    if(type == "image/jpeg" || type == "image/png" || type == "image/jpg") {
+      this.uploadProfile(file);
+    } else {
+      this._toaster.error("Upload a valid image. PNG and JPEG are the only formats allowed.");
+    }
+  }
+
+  uploadProfile(file: any) {
+    this.loadingService.setLoadingState(true);
+
+    const fd = new FormData();
+    fd.append('profile', file);
+
+    this._api.request('post', '/uploadprofile', { formData: fd })
+      .subscribe(
+      (res: Response) => {
+        if(res) {
+          this.getprofile();
+        }
+        this.loadingService.setLoadingState(false);
+      },(err) => {
+        console.log("err ::", err);
+        this.loadingService.setLoadingState(false);
+        if (err.error) {
+          this._toaster.error(err.error.message, "");
+        }
+      }
+    )
+  }
 
   getprofile() {
     this.loadingService.setLoadingState(true);

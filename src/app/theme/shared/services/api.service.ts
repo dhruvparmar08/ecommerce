@@ -21,12 +21,13 @@ export class ApiService {
     options: {
       body?: any,
       params?: any,
-      headers?: HttpHeaders
+      headers?: HttpHeaders,
+      formData?: any
     } = {}
   ): Observable<T> {
     let httpOptions = {
       headers: options.headers || new HttpHeaders(),
-      body: { info: this.cryptoservice.encryptData(options.body) } || {},
+      body: options.body ? { info: this.cryptoservice.encryptData(options.body) } : options.formData,
       params: new HttpParams()
     };
 
