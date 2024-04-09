@@ -39,3 +39,45 @@ $pc-secondary: map-get($preset-colors, 'preset-1', 'secondary');
 
 // font
 @import 'scss/fonts/tabler-icons.min.css';
+
+// toastr
+@import 'ngx-toastr/toastr';
+
+// custom scss
+$invalid_color: red;
+$invalid_box_color: rgb(255 42 24 / 20%);
+
+.btn {
+    &:disabled {
+        pointer-events: auto;
+        cursor: not-allowed;
+    }
+}
+
+.input-invalid {
+    border: 1px solid $invalid_color;
+    border-radius: 4px;
+
+    &:focus {
+        border-color: $invalid_color;
+        outline: 0;
+        box-shadow: 0 0 0 2px $invalid_box_color;
+    }
+}
+
+.input-lable-invalid {
+    display: block;
+    color: red;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.input-lable-valid {
+    display: none;
+}
+
+.form-control {
+    &:disabled {
+        cursor: not-allowed;
+    }
+}

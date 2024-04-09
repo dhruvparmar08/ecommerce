@@ -1,0 +1,86 @@
+<div class="card">
+    <div class="card-body">
+        <form [formGroup]="changepwdForm" (submit)="submit()">
+            <div class="row">
+
+                <div class="col-12">
+                    <h5>Change Password</h5>
+                    <hr class="mb-4">
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label class="form-label" for="oldpassword">Old Password</label>
+                        <div class="d-flex">
+                            <input [type]="showoldpwd ? 'text' : 'password'" name="oldpassword" class="form-control"
+                                id="oldpassword" trim placeholder="Old Password" formControlName="oldpassword"
+                                [ngClass]="{ 'input-invalid': (f.controls['oldpassword'].touched && f.controls['oldpassword'].invalid) || (isSubmit && f.controls['oldpassword'].invalid) }" />
+                            <i class="ti {{ showoldpwd ? 'ti-eye-off' : 'ti-eye' }}" (click)="showoldpwd = !showoldpwd"></i>
+                        </div>
+                        <ng-container
+                            *ngIf="(f.controls['oldpassword'].touched && f.controls['oldpassword'].invalid) || (isSubmit && f.controls['oldpassword'].invalid)">
+                            <span [ngClass]="{'input-lable-invalid': (f.controls['oldpassword'].touched && f.controls['oldpassword'].invalid) || (isSubmit && f.controls['oldpassword'].invalid) }">
+                                <span *ngIf="f.controls['oldpassword'].getError('required')">Old Password field is required.</span>
+                                <span *ngIf="f.controls['oldpassword'].getError('minlength')">Please enter valid old password.</span>
+                                <span *ngIf="f.controls['oldpassword'].getError('match') && !f.controls['oldpassword'].getError('required') && !f.controls['oldpassword'].getError('minlength')">The old password and the new password must be different.</span>
+                            </span>
+                        </ng-container>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="newpassword">New Password</label>
+                        <div class="d-flex">
+                            <input [type]="showpwd ? 'text' : 'password'" name="newpassword" class="form-control"
+                                id="newpassword" trim placeholder="New Password" formControlName="newpassword"
+                                [ngClass]="{ 'input-invalid': (f.controls['newpassword'].touched && f.controls['newpassword'].invalid) || (isSubmit && f.controls['newpassword'].invalid) }" />
+                            <i class="ti {{ showpwd ? 'ti-eye-off' : 'ti-eye' }}" (click)="showpwd = !showpwd"></i>
+                        </div>
+                        <ng-container
+                            *ngIf="(f.controls['newpassword'].touched && f.controls['newpassword'].invalid) || (isSubmit && f.controls['newpassword'].invalid)">
+                            <span [ngClass]="{'input-lable-invalid': (f.controls['newpassword'].touched && f.controls['newpassword'].invalid) || (isSubmit && f.controls['newpassword'].invalid) }">
+                                <span *ngIf="f.controls['newpassword'].getError('required')">New Password field is required.</span>
+                                <span *ngIf="f.controls['newpassword'].getError('pattern')">Please enter valid new password.</span>
+                                <span *ngIf="f.controls['newpassword'].getError('match') && !f.controls['newpassword'].getError('required') && !f.controls['newpassword'].getError('pattern')">The old password and the new password must be different.</span>
+                                <span *ngIf="f.controls['confirmpassword'].getError('mismatch')">New Password and Confirm Password must be the same.</span>
+                            </span>
+                        </ng-container>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="confirmpassword">Confirm Password</label>
+                        <div class="d-flex">
+                            <input [type]="showconfirmpwd ? 'text' : 'password'" name="confirmpassword"
+                                class="form-control" id="confirmpassword" trim placeholder="Confirm Password"
+                                formControlName="confirmpassword"
+                                [ngClass]="{ 'input-invalid': (f.controls['confirmpassword'].touched && f.controls['confirmpassword'].invalid) || (isSubmit && f.controls['confirmpassword'].invalid) }" />
+                            <i class="ti {{ showconfirmpwd ? 'ti-eye-off' : 'ti-eye' }}" (click)="showconfirmpwd = !showconfirmpwd"></i>
+                        </div>
+                        <ng-container
+                            *ngIf="(f.controls['confirmpassword'].touched && f.controls['confirmpassword'].invalid) || (isSubmit && f.controls['confirmpassword'].invalid)">
+                            <span
+                                [ngClass]="{'input-lable-invalid': (f.controls['confirmpassword'].touched && f.controls['confirmpassword'].invalid) || (isSubmit && f.controls['confirmpassword'].invalid) }">
+                                <span *ngIf="f.controls['confirmpassword'].getError('required')">Confirm Password field is required.</span>
+                                <span *ngIf="f.controls['confirmpassword'].getError('mismatch')">New Password and Confirm Password must be the same.</span>
+                            </span>
+                        </ng-container>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <h5>New password must contain:</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><i class="ti ti-minus me-2"></i> At least 6 characters</li>
+                        <li class="list-group-item"><i class="ti ti-minus me-2"></i> At least 1 lower letter (a-z)</li>
+                        <li class="list-group-item"><i class="ti ti-minus me-2"></i> At least 1 uppercase letter (A-Z)
+                        </li>
+                        <li class="list-group-item"><i class="ti ti-minus me-2"></i> At least 1 number (0-9)</li>
+                        <li class="list-group-item"><i class="ti ti-minus me-2"></i> At least 1 special characters</li>
+                    </ul>
+                </div>
+                <div class="col-12 text-end">
+                    <hr class="mb-4">
+                    <div class="d-flex justify-content-around">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="button" class="btn btn-outline-secondary">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

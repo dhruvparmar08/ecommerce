@@ -6,19 +6,37 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './theme/layouts/admin/admin.component';
 import { GuestComponent } from './theme/layouts/guest/guest.component';
 
+import { authGuard } from './theme/shared/guard/auth.guard';
+import { mainGuard } from './theme/shared/guard/main.guard';
+
 const routes: Routes = [
   {
     path: '',
+    redirectTo: 'main',
+    pathMatch: 'full'
+  },
+  {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
+    canActivate: [mainGuard]
+  },
+  {
+    path: 'main',
     component: AdminComponent,
+    canActivate: [authGuard],
     children: [
       {
         path: '',
-        redirectTo: '/dashboard/default',
+        redirectTo: '/main/dashboard',
         pathMatch: 'full'
       },
       {
-        path: 'dashboard/default',
+        path: 'dashboard',
         loadComponent: () => import('./demo/default/dashboard/dashboard.component')
+      },
+      {
+        path: 'profile',
+        loadComponent: () => import('./main/profile/profile.component')
       },
       {
         path: 'typography',
@@ -47,23 +65,14 @@ const routes: Routes = [
     ]
   },
   {
-    path: '',
-    component: GuestComponent,
-    children: [
-      {
-        path: 'login',
-        loadComponent: () => import('./demo/authentication/login/login.component')
-      },
-      {
-        path: 'register',
-        loadComponent: () => import('./demo/authentication/register/register.component')
-      }
-    ]
+    path: '**',
+    redirectTo: 'main',
+    pathMatch: 'full'
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}

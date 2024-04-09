@@ -8,8 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AdminComponent {
   // public props
-  navCollapsed: boolean;
+  navCollapsed: boolean = true; // for sidebar do it to false
   navCollapsedMob: boolean = false;
+
+  currentYear: number = new Date().getFullYear();
 
   // public method
   navMobClick() {

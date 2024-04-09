@@ -29,7 +29,7 @@ export const NavigationItems: NavigationItem[] = [
         title: 'Default',
         type: 'item',
         classes: 'nav-item',
-        url: '/dashboard/default',
+        url: '/main/dashboard/default',
         icon: 'ti ti-dashboard',
         breadcrumbs: false
       }
@@ -46,7 +46,7 @@ export const NavigationItems: NavigationItem[] = [
         title: 'Typography',
         type: 'item',
         classes: 'nav-item',
-        url: '/typography',
+        url: '/main/typography',
         icon: 'ti ti-typography'
       },
       {
@@ -54,7 +54,7 @@ export const NavigationItems: NavigationItem[] = [
         title: 'Card',
         type: 'item',
         classes: 'nav-item',
-        url: '/card',
+        url: '/main/card',
         icon: 'ti ti-credit-card'
       },
       {
@@ -62,7 +62,7 @@ export const NavigationItems: NavigationItem[] = [
         title: 'Breadcrumb',
         type: 'item',
         classes: 'nav-item',
-        url: '/breadcrumb',
+        url: '/main/breadcrumb',
         icon: 'ti ti-hierarchy-2'
       },
       {
@@ -70,7 +70,7 @@ export const NavigationItems: NavigationItem[] = [
         title: 'spinner',
         type: 'item',
         classes: 'nav-item',
-        url: '/spinner',
+        url: '/main/spinner',
         icon: 'ti ti-loader'
       },
       {
@@ -78,7 +78,7 @@ export const NavigationItems: NavigationItem[] = [
         title: 'Colors',
         type: 'item',
         classes: 'nav-item',
-        url: '/color',
+        url: '/main/color',
         icon: 'ti ti-brush'
       },
       {
@@ -93,34 +93,34 @@ export const NavigationItems: NavigationItem[] = [
       }
     ]
   },
-  {
-    id: 'authentication',
-    title: 'Authentication',
-    type: 'group',
-    icon: 'icon-navigation',
-    children: [
-      {
-        id: 'login',
-        title: 'Login',
-        type: 'item',
-        classes: 'nav-item',
-        url: '/login',
-        icon: 'ti ti-login',
-        target: true,
-        breadcrumbs: false
-      },
-      {
-        id: 'register',
-        title: 'Register',
-        type: 'item',
-        classes: 'nav-item',
-        url: '/register',
-        icon: 'ti ti-user-plus',
-        target: true,
-        breadcrumbs: false
-      }
-    ]
-  },
+  // {
+  //   id: 'authentication',
+  //   title: 'Authentication',
+  //   type: 'group',
+  //   icon: 'icon-navigation',
+  //   children: [
+  //     {
+  //       id: 'login',
+  //       title: 'Login',
+  //       type: 'item',
+  //       classes: 'nav-item',
+  //       url: '/login',
+  //       icon: 'ti ti-login',
+  //       target: true,
+  //       breadcrumbs: false
+  //     },
+  //     {
+  //       id: 'register',
+  //       title: 'Register',
+  //       type: 'item',
+  //       classes: 'nav-item',
+  //       url: '/register',
+  //       icon: 'ti ti-user-plus',
+  //       target: true,
+  //       breadcrumbs: false
+  //     }
+  //   ]
+  // },
   {
     id: 'other',
     title: 'Other',
@@ -131,7 +131,7 @@ export const NavigationItems: NavigationItem[] = [
         id: 'sample-page',
         title: 'Sample Page',
         type: 'item',
-        url: '/sample-page',
+        url: '/main/sample-page',
         classes: 'nav-item',
         icon: 'ti ti-brand-chrome'
       }

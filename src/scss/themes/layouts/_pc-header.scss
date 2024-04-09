@@ -213,7 +213,8 @@
   }
 
   .user-avtar {
-    width: 40px;
+    width: 36px;
+    height: 36px;
     margin-right: 10px;
     border-radius: 50%;
   }
@@ -230,7 +231,8 @@
       }
 
       .user-avtar {
-        width: 24px;
+        width: 36px;
+        height: 36px;
       }
 
       @include media-breakpoint-down(sm) {

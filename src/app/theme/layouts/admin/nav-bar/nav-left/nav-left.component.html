@@ -1,5 +1,5 @@
 <ul class="list-unstyled">
-  <li class="pc-h-item pc-sidebar-collapse">
+  <!-- <li class="pc-h-item pc-sidebar-collapse">
     <a
       href="javascript:"
       class="pc-head-link ms-0"
@@ -16,8 +16,13 @@
     <a href="javascript:" title="click to menu open" class="pc-head-link ms-0" id="mobile-collapse1" (click)="this.NavCollapsedMob.emit()">
       <i class="ti ti-menu-2"></i>
     </a>
+  </li> -->
+  <li class="pc-h-item">
+    <a [routerLink]="['/main/dashboard']">
+      <img src="assets/images/logo-dark.svg" alt="theme-logo" class="logo logo-dark logo-lg" />
+    </a>
   </li>
-  <li class="dropdown pc-h-item d-inline-flex d-md-none" ngbDropdown>
+  <!-- <li class="dropdown pc-h-item d-inline-flex d-md-none" ngbDropdown>
     <a class="pc-head-link dropdown-toggle arrow-none m-0" ngbDropdownToggle>
       <i class="ti ti-search"></i>
     </a>
@@ -29,13 +34,13 @@
         </div>
       </form>
     </div>
-  </li>
-  <li class="pc-h-item d-none d-md-inline-flex">
+  </li> -->
+  <!-- <li class="pc-h-item d-none d-md-inline-flex">
     <form class="header-search">
       <div class="search-btn">
         <i class="ti ti-search"></i>
       </div>
       <input type="search" class="form-control" placeholder="Search here. . ." />
     </form>
-  </li>
+  </li> -->
 </ul>

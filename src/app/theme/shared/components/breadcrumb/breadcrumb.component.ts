@@ -50,34 +50,36 @@ export class BreadcrumbComponent {
         this.navigationList = breadcrumbList;
         this.componentList = this.filterNavigation(this.ComponentNavigations, activeLink);
         const title = breadcrumbList[breadcrumbList.length - 1]?.title || 'Welcome';
-        this.titleService.setTitle(title + ' | Mantis  Angular Admin Template');
+        // this.titleService.setTitle(title + ' | Mantis  Angular Admin Template');
       }
     });
   }
 
   filterNavigation(navItems: NavigationItem[], activeLink: string): titleType[] {
-    for (const navItem of navItems) {
-      if (navItem.type === 'item' && 'url' in navItem && navItem.url === activeLink) {
-        return [
-          {
-            url: 'url' in navItem ? navItem.url : false,
-            title: navItem.title,
-            breadcrumbs: 'breadcrumbs' in navItem ? navItem.breadcrumbs : true,
-            type: navItem.type
+    if(navItems) {
+      for (const navItem of navItems) {
+        if (navItem.type === 'item' && 'url' in navItem && navItem.url === activeLink) {
+          return [
+            {
+              url: 'url' in navItem ? navItem.url : false,
+              title: navItem.title,
+              breadcrumbs: 'breadcrumbs' in navItem ? navItem.breadcrumbs : true,
+              type: navItem.type
+            }
+          ];
+        }
+        if ((navItem.type === 'group' || navItem.type === 'collapse') && 'children' in navItem) {
+          // eslint-disable-next-line
+          const breadcrumbList = this.filterNavigation(navItem.children!, activeLink);
+          if (breadcrumbList.length > 0) {
+            breadcrumbList.unshift({
+              url: 'url' in navItem ? navItem.url : false,
+              title: navItem.title,
+              breadcrumbs: 'breadcrumbs' in navItem ? navItem.breadcrumbs : true,
+              type: navItem.type
+            });
+            return breadcrumbList;
           }
-        ];
-      }
-      if ((navItem.type === 'group' || navItem.type === 'collapse') && 'children' in navItem) {
-        // eslint-disable-next-line
-        const breadcrumbList = this.filterNavigation(navItem.children!, activeLink);
-        if (breadcrumbList.length > 0) {
-          breadcrumbList.unshift({
-            url: 'url' in navItem ? navItem.url : false,
-            title: navItem.title,
-            breadcrumbs: 'breadcrumbs' in navItem ? navItem.breadcrumbs : true,
-            type: navItem.type
-          });
-          return breadcrumbList;
         }
       }
     }

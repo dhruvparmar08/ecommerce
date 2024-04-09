@@ -1,0 +1,62 @@
+<div class="row">
+    <div class="col-sm-12">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body position-relative">
+                        <div class="text-center">
+                            <div class="chat-avtar d-inline-flex mx-auto">
+                                <img [src]="profiledetails.profileUrl" (error)="handleImageError($event)"
+                                    alt="User image" class="rounded-circle img-fluid wid-120" style="height: 120px;"></div>
+                            <h5 class="mt-3">{{profiledetails.name}}</h5>
+                            <!-- <p class="text-muted">Full Stack Developer</p> -->
+                            <!-- <ul class="list-inline ms-auto mb-0">
+                                <li class="list-inline-item"><a href="#" class="avtar avtar-xs btn-light-facebook"><i
+                                            class="ti ti-brand-facebook f-18"></i></a></li>
+                                <li class="list-inline-item"><a href="#" class="avtar avtar-xs btn-light-twitter"><i
+                                            class="ti ti-brand-twitter f-18"></i></a></li>
+                                <li class="list-inline-item"><a href="#" class="avtar avtar-xs btn-light-linkedin"><i
+                                            class="ti ti-brand-linkedin f-18"></i></a></li>
+                            </ul> -->
+                            <div class="row g-3 my-4">
+                                <!-- <div class="col-4">
+                                    <h5 class="mb-0">86</h5><small class="text-muted">Post</small>
+                                </div>
+                                <div class="col-4 border border-top-0 border-bottom-0">
+                                    <h5 class="mb-0">40</h5><small class="text-muted">Project</small>
+                                </div>
+                                <div class="col-4">
+                                    <h5 class="mb-0">4.5K</h5><small class="text-muted">Members</small>
+                                </div> -->
+                            </div>
+                        </div>
+                        <div id="user-set-tab" role="tablist" aria-orientation="vertical"
+                            class="nav flex-column nav-pills list-group list-group-flush user-sett-tabs">
+                            <a id="user-tab-1" data-bs-toggle="pill" href="javascript:void(0);" role="tab" aria-selected="true" 
+                                (click)="chnagerouter()" class="nav-link list-group-item list-group-item-action" [ngClass]="{'active' : editprofile}">
+                                <span class="f-w-500">
+                                    <i class="ti ti-user m-r-10"></i> Personal Information
+                                </span>
+                            </a>
+                            <a id="user-tab-2" data-bs-toggle="pill" href="javascript:void(0);" role="tab" aria-selected="false" tabindex="-1"
+                                class="nav-link list-group-item list-group-item-action" (click)="chnagerouter()"  [ngClass]="{'active' : !editprofile}">
+                                <span class="f-w-500">
+                                    <i class="ti ti-lock m-r-10"></i>Change Password
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <ng-container *ngIf="editprofile; else changepwd">
+                    <app-edit-profile [profileData]="profiledetails"></app-edit-profile>
+                </ng-container>
+
+                <ng-template #changepwd>
+                    <app-change-pwd></app-change-pwd>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>

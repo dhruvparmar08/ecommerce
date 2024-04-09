@@ -5,6 +5,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // project import
 import { AppRoutingModule } from './app-routing.module';
+import { ToastrModule } from 'ngx-toastr';
+
 import { AppComponent } from './app.component';
 import { SharedModule } from './theme/shared/shared.module';
 import { AdminComponent } from './theme/layouts/admin/admin.component';
@@ -17,6 +19,8 @@ import { NavContentComponent } from './theme/layouts/admin/navigation/nav-conten
 import { NavCollapseComponent } from './theme/layouts/admin/navigation/nav-content/nav-collapse/nav-collapse.component';
 import { NavGroupComponent } from './theme/layouts/admin/navigation/nav-content/nav-group/nav-group.component';
 import { NavItemComponent } from './theme/layouts/admin/navigation/nav-content/nav-item/nav-item.component';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { TokenInterceptor } from './theme/shared/services/api-interceptor.interceptor';
 
 @NgModule({
   declarations: [
@@ -32,7 +36,26 @@ import { NavItemComponent } from './theme/layouts/admin/navigation/nav-content/n
     NavGroupComponent,
     NavItemComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, SharedModule, BrowserAnimationsModule],
-  bootstrap: [AppComponent]
+  imports: [
+    BrowserModule, 
+    AppRoutingModule, 
+    SharedModule, 
+    BrowserAnimationsModule,
+    HttpClientModule,
+    ToastrModule.forRoot({
+      timeOut: 3500,
+      positionClass: 'toast-top-right',
+      tapToDismiss: true,
+      maxOpened: 1
+    })
+  ],
+  bootstrap: [AppComponent],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ]
 })
 export class AppModule {}

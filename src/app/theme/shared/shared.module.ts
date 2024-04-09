@@ -7,12 +7,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { CardComponent } from './components/card/card.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 // third party
 import { NgScrollbarModule } from 'ngx-scrollbar';
 
 // bootstrap import
-import { NgbDropdownModule, NgbNavModule, NgbModule, NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDropdownModule, NgbNavModule, NgbModule, NgbCollapseModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { LoadingService } from './services/loading.service';
 
 @NgModule({
   imports: [
@@ -25,7 +27,8 @@ import { NgbDropdownModule, NgbNavModule, NgbModule, NgbCollapseModule } from '@
     NgbModule,
     NgbCollapseModule,
     NgScrollbarModule,
-    CardComponent
+    NgbModalModule,
+    CardComponent,
   ],
   exports: [
     CommonModule,
@@ -38,8 +41,12 @@ import { NgbDropdownModule, NgbNavModule, NgbModule, NgbCollapseModule } from '@
     NgbNavModule,
     NgbCollapseModule,
     NgScrollbarModule,
-    CardComponent
+    CardComponent,
+    LoadingComponent
   ],
-  declarations: [SpinnerComponent]
+  declarations: [SpinnerComponent, LoadingComponent],
+  providers: [
+    LoadingService
+  ]
 })
 export class SharedModule {}
