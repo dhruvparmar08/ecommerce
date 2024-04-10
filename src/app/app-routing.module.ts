@@ -32,7 +32,18 @@ const routes: Routes = [
       },
       {
         path: 'dashboard',
-        loadComponent: () => import('./demo/default/dashboard/dashboard.component')
+        loadComponent: () => import('./main/dashboard/dashboard.component'),
+        children: [
+          {
+            path: '',
+            loadComponent: () => import('./main/products/products.component')
+          },
+          {
+            path: '**',
+            redirectTo: 'dashboard',
+            pathMatch: 'full'
+          }
+        ]
       },
       {
         path: 'profile',
